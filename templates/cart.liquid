@@ -1,0 +1,18 @@
+{% if cart.item_count > 0 %}
+    <form action="/cart" method="post" novalidate>
+        <div class="cart-page-container">
+            {% for item in cart.items %}
+                {% include 'cart-item' %}
+            {% endfor %}
+        </div>
+        <div>
+            <p>sub total :
+                {{ cart.total_price | money }}</p>
+            <button name="update" type="submit">Update</button>
+            <button name="checkout" type="submit">Checkout</button>
+        </div>
+    </form>
+{% else %}
+    <h2>cart</h2>
+    Votre panier est vide!
+{% endif %}

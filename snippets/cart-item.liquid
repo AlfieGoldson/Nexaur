@@ -1,0 +1,28 @@
+<div class="cart-item">
+    <div>
+        <a href="{{ item.url | within: collections.all }}">
+            <img src="{{ item | img_url: 'medium' }}" alt="{{ item.title | escape }}"/>
+        </a>
+    </div>
+    <div class="cart-item__title">
+        <a href="{{ item.url }}">{{ item.product.title }}</a><br>
+        {{ item.variant.title }}
+    </div>
+    <div>{{ item.price | money }}</div>
+    <div>
+        <input type="number" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="0"/>
+    </div>
+    <div>
+        {% if item.original_line_price != item.line_price %}
+            {{
+            item.original_line_price | money
+        }}
+        {% endif %}
+        {{ item.line_price | money }}
+        {% for discount in item.discounts %}
+            {{ discount.title }}
+        {% endfor %}
+    </div>
+
+    <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0">X</a>
+</div>

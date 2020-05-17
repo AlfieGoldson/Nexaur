@@ -1,0 +1,44 @@
+<div class="product-card">
+    <div>
+        <div class="product-card__thumb">
+            <a href="{{ product.url | within: collection }}">
+                <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}"/>
+            </a>
+        </div>
+
+        <p class="product-card__price">
+            {% if product.compare_at_price > product.price %}
+                <span class="product-card__oldprice">
+                    {{ product.compare_at_price_max | money }}
+                </span>
+            {% endif %}
+
+            <span class="product-card__newprice">
+                {{ product.price | money }}
+            </span>
+        </p>
+
+        <p class="product-card__title">
+            <a href="{{ product.url | within: collection }}">{{
+                product.title
+            }}</a>
+        </p>
+    </div>
+
+    <div>
+        <form class="product-card__form" action="/cart/add" data-productid="{{ product.id }}" method="post">
+            <input type="hidden" name="id" data-productid="{{ product.id }}" class="product-select" value="{{ product.variants[0].id }}" data-variant-title="{{ product.variants[0].title }}"/>
+            <div class="product-card__btns">
+                {% if product.available %}
+                    <input class="product-card__add-to-cart-btn" type="submit" value="Ajouter au panier"/>
+                {% else %}
+                    <input class="product-card__add-to-cart-btn disabled" disabled="disabled" type="button" value="Rupture"/>
+                {% endif %}
+            </div>
+        </form>
+    </div>
+
+    {% unless product.available %}<br/><strong>sold out</strong>
+    {%
+    endunless %}
+</div>

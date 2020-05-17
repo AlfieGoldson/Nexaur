@@ -1,0 +1,13 @@
+<div class="landing">
+    <div class="landing__banner-image">
+        <img alt="Forest" src="/assets/Forest.jpg">
+    </div>
+</div>
+
+<div class="collection">
+    <div class="collection__items">
+        {% for product in collections.frontpage.products limit:7 %}
+            {% include 'product-card' %}
+        {% endfor %}
+    </div>
+</div>

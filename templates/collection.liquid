@@ -1,0 +1,15 @@
+{% paginate collection.products by 20 %}
+    <div class="collection">
+        <h1 class="collection__title">{{ collection.title }}</h1>
+        <div class="collection__items">
+            {% for product in collection.products %}
+                {% include 'product-card' %}
+            {% else %}
+                <p>no matches</p>
+            {% endfor %}
+            {% if paginate.pages > 1 %}
+                {{ paginate | default_pagination }}
+            {% endif %}
+        </div>
+    </div>
+{% endpaginate %}
