@@ -1,18 +1,19 @@
 [
 	{
-		"name": "Colors",
+		"name": "theme_info",
+		"theme_name": "Nexaur",
+		"theme_version": "0.0.1",
+		"theme_author": "Alfie",
+		"theme_documentation_url": "https://github.com/AlfieGoldson/Nexaur",
+		"theme_support_url": "https://github.com/AlfieGoldson/Nexaur/issues"
+	},
+	{
+		"name": "Landing Page",
 		"settings": [
 			{
-				"type": "color",
-				"id": "color_borders",
-				"label": "Border colors",
-				"default": "#e5e5e5"
-			},
-			{
-				"type": "color",
-				"id": "color_body_text",
-				"label": "Body text",
-				"default": "#333333"
+				"type": "image_picker",
+				"id": "index_banner_image",
+				"label": "Banner Image"
 			}
 		]
 	}

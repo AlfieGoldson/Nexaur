@@ -1,46 +1,45 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>{{ page_title }}</title>
-		<meta charset="utf-8" />
-		<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" />
-		<meta name="description" content="{{ page_description | escape }}" />
-		<link rel="canonical" href="{{ canonical_url }}" />
-		<meta
-			content="width=device-width,initial-scale=1,shrink-to-fit=no"
-			name="viewport"
-		/>
-		{{
+    <head>
+        <title>{{ page_title }}</title>
+        <meta charset="utf-8"/>
+        <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
+        <meta name="description" content="{{ page_description | escape }}"/>
+        <link rel="canonical" href="{{ canonical_url }}"/>
+        <meta content="width=device-width,initial-scale=1,shrink-to-fit=no" name="viewport"/>
+        {{
 			content_for_header
 		}}
-		{{
+        {{
 			'application.scss.css' | asset_url | stylesheet_tag
 		}}
-		{{
+        {{
 			'application.js' | asset_url | script_tag
 		}}
-	</head>
-	<body>
-		<header>
-			<div class="logo"><a href="/">LOGO</a></div>
-			<nav id="main-nav">
-				<ul>
-					{% for link in linklists.main-menu.links %}
-					<li>
-						<a href="{{ link.url }}" class="link">{{
+    </head>
+    <body>
+        <header>
+            <div class="logo">
+                <a href="/">LOGO</a>
+            </div>
+            <nav id="main-nav">
+                <ul>
+                    {% for link in linklists.main-menu.links %}
+                        <li>
+                            <a href="{{ link.url }}">{{
 							link.title
 						}}</a>
-					</li>
-					{% endfor %}
-					<li>
-						<a class="link" href="/cart">Panier</a>
-					</li>
-				</ul>
-			</nav>
-		</header>
+                        </li>
+                    {% endfor %}
+                    <li>
+                        {% include 'cart-icon' %}
+                    </li>
+                </ul>
+            </nav>
+        </header>
 
-		<main role="main">
-			{{ content_for_layout }}
-		</main>
-	</body>
+        <main role="main">
+            {{ content_for_layout }}
+        </main>
+    </body>
 </html>
