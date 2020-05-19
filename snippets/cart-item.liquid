@@ -5,12 +5,13 @@
         </a>
     </div>
     <div class="cart-item__title">
-        <a href="{{ item.url }}">{{ item.product.title }}</a><br>
-        {{ item.variant.title }}
+        <a href="{{ item.url }}">{{ item.product.title }}</a>
     </div>
     <div>{{ item.price | money }}</div>
-    <div>
+    <div class="cart-item__item-counter">
+        <a href="/cart/change?line={{ forloop.index }}&amp;quantity={{ item.quantity | plus: 1 }}">+</a>
         <input type="number" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="0"/>
+        <a href="/cart/change?line={{ forloop.index }}&amp;quantity={{ item.quantity | minus: 1 }}">-</a>
     </div>
     <div>
         {% if item.original_line_price != item.line_price %}
