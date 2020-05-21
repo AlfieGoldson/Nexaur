@@ -11,6 +11,8 @@ $transition-slow: $transition-time-slow all ease;
 
 $product-card-width: 480px;
 
+$header-height: 4rem;
+
 * {
 	margin: 0;
 	padding: 0;
@@ -58,19 +60,26 @@ body {
 		filter: saturate(0);
 		z-index: -10;
 	}
+	&.scroll {
+		header {
+			background-color: $white;
+			box-shadow: 0 0 0.5rem rgba($brown, 0.2);
+		}
+	}
 }
 
 header {
-	position: sticky;
+	background-color: transparent;
+	position: fixed;
 	top: 0;
-	height: 64px;
-	background-color: $white;
+	height: $header-height;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	padding: 0 2rem;
 	z-index: 100;
-	box-shadow: 0 0 0.5rem rgba($brown, 0.2);
+	transition: $transition-default;
+	width: 100vw;
 
 	nav#main-nav {
 		ul {
@@ -96,6 +105,7 @@ header {
 }
 
 .landing {
+	margin-top: $header-height;
 	background-color: $black;
 	overflow: hidden;
 
@@ -121,7 +131,7 @@ header {
 
 .collection {
 	max-width: 1200px;
-	margin: 0 auto;
+	margin: $header-height auto 0 auto;
 	// padding: 0 2rem;
 	.collection__title {
 		text-align: center;
@@ -209,6 +219,7 @@ header {
 .cart-page-container {
 	display: flex;
 	flex-direction: column;
+	margin-top: $header-height;
 
 	.cart-item {
 		display: grid;
@@ -264,6 +275,67 @@ header {
 	display: block;
 	text-align: center;
 	margin-top: 2rem;
+}
+
+$featured-img-size: 320px;
+$other-imgs-size: 6rem;
+
+.product-page {
+	display: grid;
+	align-items: center;
+	grid-template-columns: 1fr 1fr;
+	min-height: 100vh;
+	.images {
+		padding: 2rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+
+		img {
+			object-fit: cover;
+		}
+		#featured-img {
+			display: block;
+			width: $featured-img-size;
+			height: $featured-img-size;
+			border-radius: 50%;
+			margin-bottom: 2rem;
+			transition: $transition-default;
+
+			&:hover {
+				border-radius: 0;
+				transform: scale(1.1);
+				box-shadow: 0 0 0.5rem rgba($brown, 0.2);
+			}
+		}
+		.other-imgs {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			img {
+				cursor: pointer;
+				width: $other-imgs-size;
+				height: $other-imgs-size;
+				transition: $transition-default;
+				&:not(:nth-of-type(1)) {
+					margin-left: 1rem;
+				}
+				&:hover {
+					transform: scale(1.1);
+				}
+			}
+		}
+	}
+	.infos {
+		display: flex;
+		justify-content: center;
+		padding: 2rem;
+		border-left: 1px solid $brown;
+		.title {
+			margin-bottom: 2rem;
+		}
+	}
 }
 
 .error-page {
