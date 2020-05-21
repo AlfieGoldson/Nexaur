@@ -13,11 +13,18 @@
     <div class="infos">
         <div>
             <h1 class="title">{{ product.title }}</h1>
-            <form action="/cart/add" enctype="multipart/form-data" id="AddToCartForm" method="post">
-                {{ current_variant.price | money }}
+            <form action="/cart/add" enctype="multipart/form-data" data-productid="{{ product.id }}" method="post">
+                <input type="hidden" name="id" data-productid="{{ product.id }}" class="product-select" value="{{ product.variants[0].id }}" data-variant-title="{{ product.variants[0].title }}"/>
+                <p class="price">{{ current_variant.price | money }}</p>
                 <label for="quantity">Quantité:</label>
                 <input id="quantity" min="1" name="quantity" type="number" value="1">
-                <button class="add-to-cart" name="add" type="submit">Add to cart</button>
+                <div class="add-to-cart-btns">
+                    {% if product.available %}
+                        <input class="add-to-cart-btn" type="submit" value="Ajouter au panier"/>
+                    {% else %}
+                        <input class="add-to-cart-btn disabled" disabled="disabled" type="button" value="Rupture"/>
+                    {% endif %}
+                </div>
             </form>
             <div class="description">{{ product.description }}</div>
         </div>
