@@ -9,7 +9,7 @@ $transition-default: $transition-time-default all ease;
 $transition-time-slow: 0.5s;
 $transition-slow: $transition-time-slow all ease;
 
-$product-card-width: 250px;
+$product-card-width: 480px;
 
 * {
 	margin: 0;
@@ -122,9 +122,10 @@ header {
 .collection {
 	max-width: 1200px;
 	margin: 0 auto;
-	padding: 0 2rem;
+	// padding: 0 2rem;
 	.collection__title {
 		text-align: center;
+		margin: 2rem 0;
 	}
 	.collection__items {
 		display: grid;
@@ -133,23 +134,23 @@ header {
 			minmax($product-card-width, 1fr)
 		);
 		justify-items: center;
-		gap: 2rem;
+		// gap: 2rem;
 		.product-card {
-			display: flex;
-			flex-direction: column;
+			display: grid;
+			grid-template-columns: 1fr 1fr;
 			justify-content: space-between;
-			max-width: $product-card-width;
-			margin: 2rem;
+			width: 100%;
+			// margin: 2rem;
 			overflow: hidden;
-			box-shadow: 0 0 1rem rgba($brown, 0.2);
-			border-radius: 0.5rem;
+			// border-radius: 0.5rem;
 			overflow: hidden;
-			background-color: $white;
+			background-color: transparent;
 			transition: $transition-default;
 
 			&:hover {
-				transform: scale(1.05) rotateX(10deg) rotateZ(2.5deg);
-
+				box-shadow: 0 0 1.5rem rgba($brown, 0.2);
+				background-color: $white;
+				z-index: 20;
 				.product-card__thumb img {
 					transform: scale(1.2);
 					opacity: 0.5;
@@ -157,8 +158,7 @@ header {
 			}
 
 			.product-card__thumb {
-				width: $product-card-width;
-				height: $product-card-width;
+				height: 320px;
 				overflow: hidden;
 				background-color: $brown;
 				img {
@@ -168,31 +168,37 @@ header {
 					transition: $transition-slow;
 				}
 			}
-			.product-card__title {
-				font-size: 1.25rem;
-				display: block;
-				font-weight: bold;
-				margin: 0.5rem 0.5rem 1rem 0.5rem;
-			}
-			.product-card__price {
-				margin: 0 0.5rem 0.5rem 0.5rem;
-				display: block;
-				text-align: right;
-			}
-			.product-card__btns {
+			.product-card__info {
+				padding: 1rem;
 				display: flex;
-				.product-card__add-to-cart-btn {
-					padding: 0.75rem 0;
-					flex: 1;
+				flex-direction: column;
+				justify-content: space-between;
+				.product-card__title {
+					font-size: 1.25rem;
 					display: block;
-					background-color: $brown;
-					color: $white;
-					cursor: pointer;
+					font-weight: bold;
+					margin: 0.5rem 0.5rem 1rem 0.5rem;
+				}
+				.product-card__price {
+					margin: 0 0.5rem 0.5rem 0.5rem;
+					display: block;
+					text-align: right;
+				}
+				.product-card__btns {
+					display: flex;
+					.product-card__add-to-cart-btn {
+						padding: 0.75rem 0;
+						flex: 1;
+						display: block;
+						background-color: $brown;
+						color: $white;
+						cursor: pointer;
 
-					&.disabled {
-						cursor: default;
-						background-color: rgba($brown, 0.25);
-						color: $black;
+						&.disabled {
+							cursor: default;
+							background-color: rgba($brown, 0.25);
+							color: $black;
+						}
 					}
 				}
 			}
